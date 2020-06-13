@@ -3,6 +3,7 @@ import { handleInitialData } from '../actions/shared'
 import React, { Component } from 'react';
 import LoginPage from './LoginPage';
 import CreateNewQuestion from './CreateNewQuestion';
+import Question from './Question';
 
 class App extends Component {
   componentDidMount(){
@@ -11,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <CreateNewQuestion/>
+        <Question/>
       </div>
     );
   }
