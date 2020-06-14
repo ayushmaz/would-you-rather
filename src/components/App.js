@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import LoginPage from './LoginPage';
 import CreateNewQuestion from './CreateNewQuestion';
 import Question from './Question';
+import LeaderBoard from './LeaderBoard';
+import Dashboard from './Dashboard';
 
 class App extends Component {
   componentDidMount(){
@@ -12,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Question/>
+        <Dashboard/>
       </div>
     );
   }
