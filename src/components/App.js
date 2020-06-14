@@ -14,12 +14,16 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Dashboard/>
+        {this.props.loading === false ? <LoginPage/>: <div>Loading..</div> }
       </div>
     );
   }
 }
 
+function mapStateToProps ({ loadingBar }) {
+  return {
+    loading : loadingBar === null 
+  }
+}
 
-
-export default connect()(App);
+export default connect(mapStateToProps)(App);

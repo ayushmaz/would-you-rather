@@ -5,7 +5,7 @@ import { setAuthedUser } from '../actions/authedUser';
 
 class LoginPage extends Component {
     state = {
-        authUser : 'tylermccgnis'
+        authUser : ''
     }
 
     onSelectHandle = (e) => {
@@ -23,19 +23,18 @@ class LoginPage extends Component {
         //console.log(this.state.authUser)
     }
     render() {
+        const {users} = this.props
         return (
             <div className='container' style= {{marginTop: '10%'}}>
                 <h1 style = {{marginLeft : '40%', color: 'green'}}>SIGN IN</h1><br/>
                 <form onSubmit = {(e) => this.onSubmitHandle(e)}>
                         <select className="form-control" defaultValue = {this.state.authUser}  onChange={(e) => this.onSelectHandle(e)}>
-                            <option value="select" disabled>Select User</option>
-                            <option value="tylermccgnis">tylermccgnis</option>
-                            <option value="sarahdoe">sarahdoe</option>
-                            <option value="johndoe">johndoe</option>
+                            <option value="" disabled>Select User</option>
+        `               {Object.keys(users).map((user) => <option id={users[user].id} value={users[user].name}>{users[user].name}</option>)}
                         </select>
                         <br/>
                         <div className="form-group">
-                            <input type="submit" className="form-control btn btn-success" />
+                            <input disabled= {this.state.authUser===''} type="submit" className="form-control btn btn-success" />
                         </div>
                     
 
@@ -45,7 +44,12 @@ class LoginPage extends Component {
     }
 }
 
+function mapStateToProps ({ users }) {
+    return {
+      users
+    }
+  }
 
   
 
-export default connect()(LoginPage);
+export default connect(mapStateToProps)(LoginPage);
