@@ -2,19 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class CardViewQuestion extends Component {
+    
     render() {
+        const {users} = this.props
         return (
 
             this.props.question.map((question) => {
-               return  <div id= {question.id} className="card testimonial-card w-50 mx-auto" style={{ marginTop: '10px' }}>
+               return  <div key={question.id} className="card testimonial-card w-50 mx-auto" style={{ marginTop: '10px' }}>
 
                     <div className="card-header bg-danger">
-                        <h5 style={{ color: '#fff' }}>{`${question.author} asks`}</h5>
+                        <h5 style={{ color: '#fff' }}>{`${users[question.author].name} asks`}</h5>
                     </div>
                     <div className="row">
                         <div className="col-4">
                             <div className="avatar white">
-                                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" className="rounded-circle"
+                                <img src= {users[question.author].avatarURL} className="rounded-circle"
                                     alt="avatar1"
                                     style={{
                                         padding: '10px',
@@ -50,11 +52,8 @@ function mapStateToProps(store, { questionID }) {
         console.log(question)
         return {
             question,
-            auth: store.authedUser
-        }
-    } else {
-        return {
-            question: []
+            auth: store.authedUser,
+            users : store.users
         }
     }
 }

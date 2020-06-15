@@ -8,12 +8,12 @@ class LeaderBoard extends Component {
         return (
 
             leaderBoardUsers.map((user) => {
-                return <div className="container">
+                return <div key = {user.id} className="container">
                     <div className="card testimonial-card w-50 mx-auto" style={{ marginTop: '10px', marginBottom: '5px' }}>
                         <div className="row">
                             <div className="col-3">
                                 <div className="avatar white">
-                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" className="rounded-circle"
+                                    <img src= {users[user.id].avatarURL} className="rounded-circle"
                                         alt="avatar1"
                                         style={{
                                             padding: '10px',

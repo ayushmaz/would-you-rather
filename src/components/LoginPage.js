@@ -39,7 +39,7 @@ class LoginPage extends Component {
                 <form onSubmit={(e) => this.onSubmitHandle(e)}>
                     <select className="form-control" defaultValue={this.state.authUser} onChange={(e) => this.onSelectHandle(e)}>
                         <option value="" disabled>Select User</option>
-        `               {Object.keys(users).map((user) => <option id={users[user].id} value={users[user].id}>{users[user].name}</option>)}
+        `               {Object.keys(users).map((user) => <option key={users[user].id} value={users[user].id}>{users[user].name}</option>)}
                     </select>
                     <br />
                     <div className="form-group">
