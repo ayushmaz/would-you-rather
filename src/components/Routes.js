@@ -15,7 +15,7 @@ class Routes extends Component {
                 <Fragment>
                     <Route  path='/' exact component={Dashboard} />
                     <Route  path='/add' exact component={CreateNewQuestion} />
-                    <Route exact path='/leaderboard'  component={LeaderBoard} />
+                    <Route path='/leaderboard' exact  component={LeaderBoard} />
                 </Fragment>}
             </div>
         );

@@ -1,13 +1,21 @@
-import {RECEIVE_QUESTIONS} from '../actions/questions'
+import { RECEIVE_QUESTIONS, ADD_QUESTION } from '../actions/questions'
+import { ADD_USER_QUESTION } from '../actions/users';
 
-export default function questions(state = {} , action){
-    switch(action.type){
-        case RECEIVE_QUESTIONS : 
+export default function questions(state = {}, action) {
+    switch (action.type) {
+        case RECEIVE_QUESTIONS:
             return {
                 ...state,
                 ...action.questions
             }
-        default :
-            return state   
+        case ADD_QUESTION:
+            const { question } = action;
+            return {
+                ...state,
+                [question.id]: question,
+            }
+        
+        default:
+            return state
     }
 }
