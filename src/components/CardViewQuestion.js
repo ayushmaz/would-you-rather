@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class CardViewQuestion extends Component {
     
@@ -32,7 +33,7 @@ class CardViewQuestion extends Component {
 
                                 <h2 className="card-title">Would You Rather...</h2>
                                 <p>{question.optionOne.text} ...</p>
-                                <button className='form-control btn btn-outline-success'>View full</button>
+                                <Link to={`/questions/${question.id}`}><button className='form-control btn btn-outline-success'>View full</button></Link>
                             </div>
                         </div>
                     </div >

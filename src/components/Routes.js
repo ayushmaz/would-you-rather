@@ -4,6 +4,7 @@ import LeaderBoard from './LeaderBoard';
 import { Route } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import LoginPage from './LoginPage';
+import Question from './Question';
 
 class Routes extends Component {
     render() {
@@ -16,6 +17,7 @@ class Routes extends Component {
                     <Route  path='/' exact component={Dashboard} />
                     <Route  path='/add' exact component={CreateNewQuestion} />
                     <Route path='/leaderboard' exact  component={LeaderBoard} />
+                    <Route path="/questions/:id" component={Question} />
                 </Fragment>}
             </div>
         );
