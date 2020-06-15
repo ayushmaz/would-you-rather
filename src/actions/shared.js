@@ -5,7 +5,6 @@ import {getInitialData} from '../utils/api'
 import { setAuthedUser } from './authedUser'
 
 
-const authedUser = "johndoe"
 
 
 export function handleInitialData() {
@@ -15,7 +14,6 @@ export function handleInitialData() {
             .then(({ users, questions}) => {
                 dispatch(receiveUsers(users))
                 dispatch(receiveQuestions(questions))
-                dispatch(setAuthedUser(authedUser))
                 dispatch(hideLoading())
             })
 

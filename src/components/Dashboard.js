@@ -27,7 +27,7 @@ class Dashboard extends Component {
         const { answeredQuestions, unansweredQuestions } = this.props
         console.log(answeredQuestions)
         return (
-        
+
             <div className='container'>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '5%' }}>
                     <ul className="nav">
@@ -46,25 +46,25 @@ class Dashboard extends Component {
                     </ul>
                 </div>
 
-            </div> 
-            
+            </div>
+
 
         );
-    
+
     }
 }
 
 function mapStateToProps({ authedUser, questions, users }) {
-    if (authedUser !== null) {
-        const user = users[authedUser];
-        const answeredQuestions = Object.keys(user.answers)
-            .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
-        const unansweredQuestions = Object.keys(questions).filter(qid => !answeredQuestions.includes(qid))
-            .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
-        return {
-            unansweredQuestions,
-            answeredQuestions
-        }
+
+    const user = users[authedUser];
+    console.log(user)
+    const answeredQuestions = Object.keys(user.answers)
+        .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
+    const unansweredQuestions = Object.keys(questions).filter(qid => !answeredQuestions.includes(qid))
+        .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
+    return {
+        unansweredQuestions,
+        answeredQuestions
     }
 }
 
