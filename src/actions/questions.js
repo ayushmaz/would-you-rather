@@ -1,8 +1,9 @@
-import { _saveQuestion } from "../utils/_DATA"
-import { addUserQuestion } from "./users"
+import { _saveQuestion, _saveQuestionAnswer } from "../utils/_DATA"
+import { addUserQuestion, addUserAnswer } from "./users"
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
+export const ADD_QUESTION_ANSWER = "ADD_QUESTION_ANSWER"
 
 export function receiveQuestions(questions) {
     return {
@@ -18,8 +19,17 @@ export function addQuestion(question) {
     }
 }
 
-export function handleAddQuestion(optionOneText, optionTwoText){
-    return (dispatch,getState)  =>  {
+export function addQuestionAnswer(authedUser, id, answer) {
+    return {
+        type: ADD_QUESTION_ANSWER,
+        authedUser,
+        id,
+        answer
+    }
+}
+
+export function handleAddQuestion(optionOneText, optionTwoText) {
+    return (dispatch, getState) => {
         const { authedUser } = getState()
 
         return _saveQuestion({
@@ -27,10 +37,25 @@ export function handleAddQuestion(optionOneText, optionTwoText){
             optionOneText,
             optionTwoText,
         })
-        .then((question) => {
-            dispatch(addQuestion(question));
-            dispatch(addUserQuestion(authedUser, question.id))
-        })
+            .then((question) => {
+                dispatch(addQuestion(question));
+                dispatch(addUserQuestion(authedUser, question.id))
+            })
 
+    }
+}
+
+export function handleAddAnswer(qid, option) {
+    return (dispatch, getState) => {
+        const { authedUser } = getState();
+        const info = {
+            authedUser: authedUser,
+            qid,
+            answer: option
+        }
+        _saveQuestionAnswer(info).then(() => {
+                dispatch(addQuestionAnswer(authedUser, qid, option));
+                dispatch(addUserAnswer(authedUser, qid, option))
+            })
     }
 }

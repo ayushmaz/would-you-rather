@@ -8,6 +8,7 @@ class AnsweredQuestion extends Component {
         const option1 = questions[id].optionOne.votes.length
         const option2 = questions[id].optionTwo.votes.length
         const totalVotes = option1 + option2
+        const authorName = users[author].name
         const vote1 = (option1 / totalVotes).toFixed(2) * 100
         const vote2 = (option2 / totalVotes).toFixed(2) * 100
         const answer = users[authedUser].answers[id]
@@ -22,7 +23,7 @@ class AnsweredQuestion extends Component {
 
                     <div className="card testimonial-card w-50 mx-auto">
                         <div className="card-header bg-warning">
-                            <h5>{author} Asks</h5>
+                            <h5>{authorName} Asks</h5>
                         </div>
                         <div className="row">
                             <div className="col-4">
