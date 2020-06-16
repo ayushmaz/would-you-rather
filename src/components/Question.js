@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import AnsweredQuestion from './AnsweredQuestion';
 
 class Question extends Component {
     render() {
         const { id } = this.props.match.params
-        const { questions,users } = this.props
+        const { questions,users,answer } = this.props
         const question = questions[id]
         const userAvatar = users[question.author].avatarURL 
+        const isAnswered = answer.hasOwnProperty(id)
+        console.log(isAnswered)
         return (
-            <div className="container"
+            isAnswered? <AnsweredQuestion author = {question.author} userAvatar={userAvatar} id = {id} questions = {questions} />
+            :<div className="container"
                 style={{
                     marginTop: '10%'
                 }}
@@ -61,10 +65,12 @@ class Question extends Component {
 }
 
 
-function mapStateToProps({ questions,users }) {
+function mapStateToProps({ questions,users, authedUser }) {
+    const answer = users[authedUser].answers
     return {
         questions,
-        users
+        users,
+        answer
     }
 }
 

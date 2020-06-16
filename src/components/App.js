@@ -9,7 +9,7 @@ import Dashboard from './Dashboard';
 import NavBar from './NavBar';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Routes from './Routes';
-import AnsweredQuestion from './AnsweredQuestion';
+
 
 class App extends Component {
   componentDidMount() {
@@ -22,7 +22,6 @@ class App extends Component {
         <Fragment>
           <div className="main-container">
             <NavBar />
-            <AnsweredQuestion/>
             <Routes notLoggedIn={notLoggedIn} />
           </div>
         </Fragment>

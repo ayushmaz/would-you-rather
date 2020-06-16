@@ -42,7 +42,7 @@ class Dashboard extends Component {
                 <div >
                     <ul>
                         {this.state.answeredQuestionsTab === true ? <CardViewQuestion questionID={answeredQuestions} />
-                            : <CardViewQuestion questionID={unansweredQuestions} />}
+                            : <CardViewQuestion  questionID={unansweredQuestions} />}
                     </ul>
                 </div>
 
