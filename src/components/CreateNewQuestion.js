@@ -21,6 +21,7 @@ class CreateNewQuestion extends Component {
         this.setState({toHome : true})
         e.preventDefault()
     }
+    
     render() {
 
         if(this.state.toHome === true){
@@ -48,5 +49,6 @@ class CreateNewQuestion extends Component {
         );
     }
 }
+
 
 export default connect()(CreateNewQuestion);

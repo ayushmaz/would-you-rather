@@ -4,6 +4,7 @@ import React, { Component, Fragment } from 'react';
 import NavBar from './NavBar';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from './Routes';
+import  LoadingBar  from 'react-redux-loading';
 
 
 class App extends Component {
@@ -15,19 +16,22 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
-          <div className="main-container">
-            <NavBar />
+          <LoadingBar />
+          
+            
+            {(this.props.loading === true) ? null :<div className="main-container"> <NavBar />
             <Routes notLoggedIn={notLoggedIn} />
-          </div>
+          </div>}
         </Fragment>
       </Router>
     );
   }
 }
 
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ authedUser , loadingBar }) {
   return {
-    notLoggedIn: authedUser === null
+    notLoggedIn: authedUser === null,
+    loading : loadingBar === 1
   }
 }
 
