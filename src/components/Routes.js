@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import CreateNewQuestion from './CreateNewQuestion';
 import LeaderBoard from './LeaderBoard';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import LoginPage from './LoginPage';
 import Question from './Question';
+import Page404 from './Page404';
 
 class Routes extends Component {
     render() {
@@ -20,18 +21,16 @@ class Routes extends Component {
                             <Route path="/questions/:id" component={Question} />
                         </Fragment>}
 
-                        <Route render={() =>{
-                            return <div className="container text-center">
-                                <h1 style={{color : 'orange',marginTop:'30%' ,marginBottom : '20px'}}>Oops! Page Not Found</h1>
-                                <Link to="/"><button className="btn btn-info">Login</button></Link>
-                            </div>
-                        }}/>
+                        <Route component = {Page404}/>
                 </Switch>
 
             </div>
         );
     }
 }
+
+
+
 
 
 
