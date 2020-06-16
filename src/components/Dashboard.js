@@ -7,9 +7,7 @@ import CardViewQuestion from './CardViewQuestion';
 class Dashboard extends Component {
 
     state = {
-        answeredQuestionsTab: true,
-        answered: ['a', 'b', 'c'],
-        unanswered: ['h', 'i', 'j']
+        answeredQuestionsTab: false,
     }
 
     handleClick = (e) => {
@@ -32,10 +30,12 @@ class Dashboard extends Component {
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '5%' }}>
                     <ul className="nav">
                         <li className="nav-item" style={{ padding: '5px' }}>
-                            <button className="btn btn-outline-info nav-link" id="ans" onClick={(e) => this.handleClick(e)} >Answered Question</button>
+                            <button className = {`btn btn-outline-info nav-link ${this.state.answeredQuestionsTab === true && "active"}`}
+                             id="ans" onClick={(e) => this.handleClick(e)} >Answered Question</button>
                         </li>
                         <li className="nav-item" style={{ padding: '5px' }}>
-                            <button className="btn btn-outline-info nav-link" id="unans" onClick={(e) => this.handleClick(e)}>Unanswered Question</button>
+                            <button className={`btn btn-outline-info nav-link ${this.state.answeredQuestionsTab === false && "active"}`} 
+                            id="unans" onClick={(e) => this.handleClick(e)}>Unanswered Question</button>
                         </li>
                     </ul>
                 </div>
