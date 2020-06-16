@@ -59,10 +59,10 @@ class AnsweredQuestion extends Component {
                                     <div className="card border-success">
                                         <div className="card-body">
                                             <h5 className="card-title">Would you</h5>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" style={{ width: `${vote2}%` }}>{vote2}%</div>
+                                            <div className="progress">
+                                                <div className="progress-bar bg-success" style={{ width: `${vote2}%` }}>{vote2}%</div>
                                             </div>
-                                            <p class="card-text text-center">{option2} out of {totalVotes}</p>
+                                            <p className="card-text text-center">{option2} out of {totalVotes}</p>
                                             {answer === "optionTwo" && <div className="text-center">
                                                 <button className="btn btn-info btn-sm" readOnly>Your Choice</button>
                                             </div>}
