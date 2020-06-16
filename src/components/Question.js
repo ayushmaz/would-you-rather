@@ -11,7 +11,7 @@ class Question extends Component {
         const isAnswered = answer.hasOwnProperty(id)
         console.log(isAnswered)
         return (
-            isAnswered? <AnsweredQuestion author = {question.author} userAvatar={userAvatar} id = {id} questions = {questions} />
+            isAnswered? <AnsweredQuestion id = {id} author = {question.author} userAvatar={userAvatar} />
             :<div className="container"
                 style={{
                     marginTop: '10%'
