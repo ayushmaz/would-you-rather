@@ -45,12 +45,10 @@ class CardViewQuestion extends Component {
     }
 
 function mapStateToProps(store, { questionID }) {
-    //console.log(store.questions)
-    //console.log(questionID)
     if (store.authedUser !== null && questionID) {
 
         const question = questionID.map((key) => store.questions[key])
-        console.log(question)
+
         return {
             question,
             auth: store.authedUser,

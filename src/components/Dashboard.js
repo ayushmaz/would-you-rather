@@ -23,7 +23,6 @@ class Dashboard extends Component {
     }
     render() {
         const { answeredQuestions, unansweredQuestions } = this.props
-        console.log(answeredQuestions)
         return (
 
             <div className='container'>
@@ -57,7 +56,6 @@ class Dashboard extends Component {
 function mapStateToProps({ authedUser, questions, users }) {
 
     const user = users[authedUser];
-    console.log(user)
     const answeredQuestions = Object.keys(user.answers)
         .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
     const unansweredQuestions = Object.keys(questions).filter(qid => !answeredQuestions.includes(qid))

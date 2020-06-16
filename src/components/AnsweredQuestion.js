@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { findByLabelText } from '@testing-library/react';
 import { connect } from 'react-redux';
 
 class AnsweredQuestion extends Component {
@@ -12,7 +11,6 @@ class AnsweredQuestion extends Component {
         const vote1 = (option1 / totalVotes).toFixed(2) * 100
         const vote2 = (option2 / totalVotes).toFixed(2) * 100
         const answer = users[authedUser].answers[id]
-        console.log(answer)
         return (
             <div>
                 <div className="container"

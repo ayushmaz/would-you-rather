@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 class LeaderBoard extends Component {
     render() {
         const {users, leaderBoardUsers } = this.props
-        console.log(leaderBoardUsers)
         return (
 
             leaderBoardUsers.map((user) => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser';
-import { Route, Redirect } from 'react-router-dom';
+import {  Redirect } from 'react-router-dom';
 
 
 class LoginPage extends Component {
@@ -11,7 +11,6 @@ class LoginPage extends Component {
     }
 
     onSelectHandle = (e) => {
-        //console.log(e.target.value)
         this.setState({
             authUser: e.target.value
         })
@@ -21,7 +20,6 @@ class LoginPage extends Component {
         const { authUser } = this.state
         const { dispatch } = this.props
         dispatch(setAuthedUser(authUser));
-        //console.log(this.state.authUser)
 
         this.setState(() => ({
             toDashboard: authUser ==='' ? true : false,

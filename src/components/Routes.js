@@ -9,7 +9,6 @@ import Question from './Question';
 class Routes extends Component {
     render() {
         const {notLoggedIn} = this.props
-        console.log(notLoggedIn)
         return (
             <div className="container">
                 {(notLoggedIn) ? <Route path='/' exact component={LoginPage}/> :

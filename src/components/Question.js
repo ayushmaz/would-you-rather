@@ -14,7 +14,6 @@ class Question extends Component {
 
     onSubmitHandler = (e) =>{
         e.preventDefault()
-        console.log(this.state.selectedOption)
         this.props.dispatch(handleAddAnswer(this.props.match.params.id , this.state.selectedOption))
     }
 
