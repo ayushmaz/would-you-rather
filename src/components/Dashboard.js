@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CardViewQuestion from './CardViewQuestion';
+import { Redirect } from 'react-router-dom';
 
 
 
@@ -55,6 +56,9 @@ class Dashboard extends Component {
 
 function mapStateToProps({ authedUser, questions, users }) {
 
+    if(authedUser === null){
+        return <Redirect to="/" />
+    }
     const user = users[authedUser];
     const answeredQuestions = Object.keys(user.answers)
         .sort((a, b) => questions[b].timestamp - questions[a].timestamp)

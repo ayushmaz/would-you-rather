@@ -29,7 +29,7 @@ class LoginPage extends Component {
         const { users } = this.props
         const { toDashboard } = this.state
         if (toDashboard === true) {
-            return <Redirect to='/dashboard'></Redirect>
+            return <Redirect to='/dashboard' ></Redirect>
         }
         return (
             <div className='container' style={{ marginTop: '10%' }}>
