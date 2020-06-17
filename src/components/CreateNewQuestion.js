@@ -25,7 +25,7 @@ class CreateNewQuestion extends Component {
     render() {
 
         if(this.state.toHome === true){
-            return <Redirect to='/dashboard'/>
+            return <Redirect to='/'/>
         }
         const { option1Text, option2Text } = this.state
         return (

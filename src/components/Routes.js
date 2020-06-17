@@ -6,21 +6,23 @@ import Dashboard from './Dashboard';
 import LoginPage from './LoginPage';
 import Question from './Question';
 import Page404 from './Page404';
-import PrivateRoute from './PrivateRoute';
 
 class Routes extends Component {
     render() {
-
+        const { notLoggedIn } = this.props
         return (
             <div className="container">
+                <Switch>
+                    {(notLoggedIn) ? <Route path='/' exact component={LoginPage} /> :
+                        <Fragment>
+                            <Route path='/' exact component={Dashboard} />
+                            <Route path='/add' exact component={CreateNewQuestion} />
+                            <Route path='/leaderboard' exact component={LeaderBoard} />
+                            <Route path="/questions/:id" component={Question} />
+                        </Fragment>}
 
-                <Fragment>
-                    <Route path="/" exact component={LoginPage} />
-                    <PrivateRoute path='/dashboard' component={Dashboard} />
-                    <PrivateRoute path='/add' component={CreateNewQuestion} />
-                    <Route path='/leaderboard' component={LeaderBoard} />
-                    <PrivateRoute path="/questions/:id" component={Question} />
-                </Fragment>
+                        <Route component = {Page404}/>
+                </Switch>
 
             </div>
         );

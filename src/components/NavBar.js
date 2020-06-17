@@ -16,7 +16,7 @@ class NavBar extends Component {
             username ?
             <ul className="nav justify-content-center" style={{ fontSize: '1.45rem' }}>
                 <li className="nav-item">
-                    <Link to="/dashboard"><p className="nav-link">Home</p></Link>
+                    <Link to="/"><p className="nav-link">Home</p></Link>
                 </li>
                 <li className="nav-item">
                     <Link to="/add"><p className="nav-link">Create New Question</p></Link>

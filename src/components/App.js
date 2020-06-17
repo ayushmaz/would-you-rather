@@ -19,9 +19,8 @@ class App extends Component {
           <LoadingBar />
           
             
-            {(this.props.loading === true) ? null :<div className="main-container">
-              <NavBar />
-              <Routes />
+            {(this.props.loading === true) ? null :<div className="main-container"> <NavBar />
+            <Routes notLoggedIn={notLoggedIn} />
           </div>}
         </Fragment>
       </Router>
@@ -29,8 +28,9 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({  loadingBar }) {
+function mapStateToProps({ authedUser , loadingBar }) {
   return {
+    notLoggedIn: authedUser === null,
     loading : loadingBar === 1
   }
 }
