@@ -19,7 +19,7 @@ class App extends Component {
           <LoadingBar />
           
             
-            {(this.props.loading === true) ? null :<div className="main-container"> <NavBar />
+            {(this.props.loading === true) ? null :<div className="main-container">
             <Routes notLoggedIn={notLoggedIn} />
           </div>}
         </Fragment>

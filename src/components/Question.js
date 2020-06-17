@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AnsweredQuestion from './AnsweredQuestion';
 import { handleAddAnswer } from '../actions/questions';
+import Page404 from './Page404';
 
 class Question extends Component {
 
@@ -21,6 +22,9 @@ class Question extends Component {
         const { id } = this.props.match.params
         const { questions,users,answer } = this.props
         const question = questions[id]
+        if(!question){
+            return <div>No such question found</div>
+        }
         const userAvatar = users[question.author].avatarURL 
         const isAnswered = answer.hasOwnProperty(id)
         
