@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from './Routes';
 import  LoadingBar  from 'react-redux-loading';
+import Register from './Register';
 
 
 class App extends Component {
@@ -18,7 +19,7 @@ class App extends Component {
         <Fragment>
           <LoadingBar />
           
-            
+            <Register/>
             {(this.props.loading === true) ? null :<div className="main-container">
             <Routes notLoggedIn={notLoggedIn} />
           </div>}
