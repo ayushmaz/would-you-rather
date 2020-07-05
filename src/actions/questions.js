@@ -1,5 +1,6 @@
 import { _saveQuestion, _saveQuestionAnswer, formatQuestion } from "../utils/_DATA"
 import { addUserQuestion, addUserAnswer } from "./users"
+import { addQuestionToDB, addQuestionToUsersdb, addQuestionAnswerToDB, addUserAnswerToDB } from "../utils/api"
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
@@ -33,6 +34,8 @@ export function handleAddQuestion(optionOneText, optionTwoText) {
         const { authedUser } = getState()
         const formattedQuestion = formatQuestion({ author: authedUser, optionOneText, optionTwoText })
         console.log(formattedQuestion)
+        addQuestionToDB(formattedQuestion)
+        addQuestionToUsersdb(authedUser , formattedQuestion.id)
         dispatch(addQuestion(formattedQuestion))
         dispatch(addUserQuestion(authedUser, formattedQuestion.id))
     }
@@ -60,6 +63,8 @@ export function handleAddQuestion(optionOneText, optionTwoText) {
 export function handleAddAnswer(qid, option) {
     return (dispatch, getState) => {
         const { authedUser } = getState();
+        addQuestionAnswerToDB(authedUser, qid, option)
+        addUserAnswerToDB(authedUser, qid, option)
         dispatch(addQuestionAnswer(authedUser, qid, option));
         dispatch(addUserAnswer(authedUser, qid, option))
     }

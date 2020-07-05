@@ -16,6 +16,7 @@ import {formatUser} from '../utils/_DATA'
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addUser } from '../actions/users';
+import { addUserToDB } from '../utils/api';
 
 const AvatarView = props => {
     return (
@@ -75,6 +76,7 @@ class Register extends Component {
         const formattedUser = formatUser({avatar: selected , name , username})
         console.log(formattedUser)
         dispatch(addUser(formattedUser[username]))
+        addUserToDB(formattedUser[username])
         this.setState({
             submitted : true
         })  

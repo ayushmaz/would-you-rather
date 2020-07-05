@@ -54,12 +54,11 @@ class LoginPage extends Component {
         return (
             <Container style = {{marginTop : "20%"}}>
                 <Grid
-                    xs={12}
                     container
                     direction="column"
                     justify="space-evenly"
                     alignItems="center"
-                    sm={12}
+                    
                 >
                     <FormControl variant="outlined">
                         <InputLabel htmlFor="Username">Username</InputLabel>
