@@ -45,7 +45,7 @@ class AnsweredQuestion extends Component {
                                     <h3 className="card-title">Results:</h3>
                                     <div className="card border-success ">
                                         <div className="card-body">
-                                            <h5 className="card-title">Would Your rather do this</h5>
+                                            <h5 className="card-title">Would Your rather {questions[id].optionOne.text}</h5>
                                             <div className="progress">
                                                 <div className="progress-bar bg-success" style={{ width: `${vote1}%` }}>{vote1}%</div>
                                             </div>
@@ -57,7 +57,7 @@ class AnsweredQuestion extends Component {
                                     </div>
                                     <div className="card border-success">
                                         <div className="card-body">
-                                            <h5 className="card-title">Would you</h5>
+                                            <h5 className="card-title">Would you rather {questions[id].optionTwo.text}</h5>
                                             <div className="progress">
                                                 <div className="progress-bar bg-success" style={{ width: `${vote2}%` }}>{vote2}%</div>
                                             </div>
