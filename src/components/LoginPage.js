@@ -1,29 +1,49 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser';
-import {  Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+import { Container, FormControl, InputLabel, Button, OutlinedInput, Grid } from '@material-ui/core';
 
 
 class LoginPage extends Component {
     state = {
-        authUser: '',
+        username: '',
+        password: '',
         toDashboard: false
     }
 
-    onSelectHandle = (e) => {
-        this.setState({
-            authUser: e.target.value
-        })
+    onInputChangeHandler = e => {
+        if (e.target.id === "username") {
+            this.setState({
+                username: e.target.value
+            })
+        }
+        if (e.target.id === "password") {
+            this.setState({
+                password: e.target.value
+            })
+        }
     }
     onSubmitHandle = (e) => {
         e.preventDefault()
-        const { authUser } = this.state
-        const { dispatch } = this.props
-        dispatch(setAuthedUser(authUser));
+        const { users ,dispatch } = this.props
+        const verify = Object.keys(users).some((user) => this.state.username === user)
 
-        this.setState(() => ({
-            toDashboard: authUser ==='' ? true : false,
-        }))
+        if(verify === true){
+            dispatch(setAuthedUser(this.state.username));
+            this.setState(() => ({
+                toDashboard: this.state.username !== '' ? true : false,
+            }))
+        }else{
+            alert("No such user")
+            this.setState({
+                username : '',
+                password : ''
+            })
+        }
+        
+
+        
     }
     render() {
         const { users } = this.props
@@ -32,19 +52,35 @@ class LoginPage extends Component {
             return <Redirect to='/dashboard'></Redirect>
         }
         return (
-            <div className='container' style={{ marginTop: '10%' }}>
-                <h1 style={{ marginLeft: '40%', color: 'green' }}>SIGN IN</h1><br />
-                <form onSubmit={(e) => this.onSubmitHandle(e)}>
-                    <select className="form-control" defaultValue={this.state.authUser} onChange={(e) => this.onSelectHandle(e)}>
-                        <option value="" disabled>Select User</option>
-        `               {Object.keys(users).map((user) => <option key={users[user].id} value={users[user].id}>{users[user].name}</option>)}
-                    </select>
-                    <br />
-                    <div className="form-group">
-                        <input disabled={this.state.authUser === ''} type="submit" className="form-control btn btn-success" />
-                    </div>
-                </form>
-            </div>
+            <Container style = {{marginTop : "20%"}}>
+                <Grid
+                    xs={12}
+                    container
+                    direction="column"
+                    justify="space-evenly"
+                    alignItems="center"
+                    sm={12}
+                >
+                    <FormControl variant="outlined">
+                        <InputLabel htmlFor="Username">Username</InputLabel>
+                        <OutlinedInput value={this.state.username} onChange={this.onInputChangeHandler} id="username" label="Username" />
+                    </FormControl>
+                    <FormControl variant="outlined" style={{ margin: 20 }}>
+                        <InputLabel htmlFor="password">Password</InputLabel>
+                        <OutlinedInput value={this.state.password} onChange={this.onInputChangeHandler} id="password" type="password" label="Password" />
+                    </FormControl>
+
+                    <Button
+                        disabled={this.state.username.trim() === ""}
+                        type="submit"
+                        onClick={this.onSubmitHandle}
+                        variant="contained"
+                        color="primary">
+                        Submit
+                        </Button>
+                        <p style ={{marginTop:10}}>New User? <Link to='/register'><span>Register Here</span></Link> </p>
+                </Grid>
+            </Container>
         );
     }
 }

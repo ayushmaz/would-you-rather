@@ -7,6 +7,7 @@ import LoginPage from './LoginPage';
 import Question from './Question';
 import Page404 from './Page404';
 import NavBar from './NavBar';
+import Register from './Register';
 
 class Routes extends Component {
     render() {
@@ -14,7 +15,10 @@ class Routes extends Component {
         return (
             <div className="container">
                 <Switch>
-                    {(notLoggedIn) ? <Route path='/' component={LoginPage} /> :
+                    {(notLoggedIn) ? <Fragment>
+                        <Route exact path='/' component={LoginPage} />
+                        <Route exact path = '/register' component = {Register} />
+                    </Fragment> :
                         <Fragment>
                             <NavBar />
                             <Route path='/' exact component={Dashboard} />

@@ -13,10 +13,13 @@ import avatar9 from '../avatars/avatar9.png'
 import { FormControl, InputLabel, OutlinedInput, Input, FormHelperText, Grid, Button, Avatar, Badge } from '@material-ui/core';
 import DoneIcon from '@material-ui/icons/Done';
 import {formatUser} from '../utils/_DATA'
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addUser } from '../actions/users';
 
 const AvatarView = props => {
     return (
-        <div onClick={() => props.onAvatarClick(props.message)} style={{ margin: 10 }}>
+        <div onClick={() => props.onAvatarClick(props.avatar)} style={{ margin: 10 }}>
             <Badge overlap="circle" badgeContent={props.selected ? <DoneIcon fontSize="small"/> : 0} color="secondary">
                 <Avatar alt="Remy Sharp" src={props.avatar} style={{ height: 80, width: 80 }} />
             </Badge>
@@ -26,6 +29,7 @@ const AvatarView = props => {
 
 class Register extends Component {
     state = {
+        submitted : false,
         selected: "",
         name : "",
         username : "",
@@ -33,7 +37,7 @@ class Register extends Component {
     }
 
     onAvatarClick = avatar => {
-
+        console.log(avatar)
         if (this.state.selected === avatar) {
             this.setState({
                 selected: ""
@@ -66,11 +70,19 @@ class Register extends Component {
 
     onSubmitHandler = e =>{
         e.preventDefault()
+        const {dispatch} = this.props
         const {selected , name , username} = this.state
-        const formattedQuestion = formatUser({avatar: selected , name , username})
-        console.log(formattedQuestion)      
+        const formattedUser = formatUser({avatar: selected , name , username})
+        console.log(formattedUser)
+        dispatch(addUser(formattedUser[username]))
+        this.setState({
+            submitted : true
+        })  
     }
     render() {
+        if(this.state.submitted === true){
+            return <Redirect to="/"></Redirect>
+        }
         const { selected , password , username, name } = this.state
         return (
 
@@ -106,6 +118,7 @@ class Register extends Component {
                           color="primary">
                             Submit
                         </Button>
+                        <p>Already Registered? <Link to='/'><span>Login</span></Link> </p>
 
                     </Grid>
                     <Grid container xs={12} sm={4} spacing={2}>
@@ -137,4 +150,4 @@ class Register extends Component {
     }
 }
 
-export default Register;
+export default connect()(Register);

@@ -18,8 +18,6 @@ class App extends Component {
       <Router>
         <Fragment>
           <LoadingBar />
-          
-            <Register/>
             {(this.props.loading === true) ? null :<div className="main-container">
             <Routes notLoggedIn={notLoggedIn} />
           </div>}
