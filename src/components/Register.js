@@ -21,7 +21,7 @@ import { addUserToDB } from '../utils/api';
 const AvatarView = props => {
     return (
         <div onClick={() => props.onAvatarClick(props.avatar)} style={{ margin: 10 }}>
-            <Badge overlap="circle" badgeContent={props.selected ? <DoneIcon fontSize="small"/> : 0} color="secondary">
+            <Badge overlap="circle" badgeContent={props.selected === '' ? <DoneIcon fontSize="small"/> : 0} color="secondary">
                 <Avatar alt="Remy Sharp" src={props.avatar} style={{ height: 80, width: 80 }} />
             </Badge>
         </div>
@@ -38,7 +38,6 @@ class Register extends Component {
     }
 
     onAvatarClick = avatar => {
-        console.log(avatar)
         if (this.state.selected === avatar) {
             this.setState({
                 selected: ""
