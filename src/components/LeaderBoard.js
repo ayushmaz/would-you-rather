@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 
 class LeaderBoard extends Component {
     render() {
-        const {users, leaderBoardUsers } = this.props
+        const { users, leaderBoardUsers } = this.props
         return (
-
-            leaderBoardUsers.map((user) => {
-                return <div key = {user.id} className="container">
+            <div className="container" style={{marginLeft: 120 , marginTop: 100}}>
+                {leaderBoardUsers.map((user) => {
+                return <div key={user.id} className="container">
                     <div className="card testimonial-card w-50 mx-auto" style={{ marginTop: '10px', marginBottom: '5px' }}>
                         <div className="row">
                             <div className="col-3">
                                 <div className="avatar white">
-                                    <img src= {users[user.id].avatarURL} className="rounded-circle"
+                                    <img src={users[user.id].avatarURL} className="rounded-circle"
                                         alt="avatar1"
                                         style={{
                                             padding: '10px',
@@ -37,7 +37,7 @@ class LeaderBoard extends Component {
                                     <div className="row" style={{ fontFamily: 'Roboto', fontWeight: '600' }}>
 
                                         <div className="col-9" >Created Question</div>
-                                    <div className="col-3" >{users[user.id].questions.length}</div>
+                                        <div className="col-3" >{users[user.id].questions.length}</div>
                                     </div>
 
                                 </div>
@@ -64,8 +64,9 @@ class LeaderBoard extends Component {
                         </div >
                     </div >
                 </div >
-            })
 
+            })}
+            </div>
         );
     }
 }

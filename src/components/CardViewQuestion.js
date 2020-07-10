@@ -9,6 +9,7 @@ class CardViewQuestion extends Component {
         return (
 
             this.props.question.map((question) => {
+                console.log(users[question.author])
                return  <div key={question.id} className="card testimonial-card w-50 mx-auto" style={{ marginTop: '10px' }}>
 
                     <div className="card-header bg-danger">

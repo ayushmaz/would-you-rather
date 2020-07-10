@@ -11,16 +11,6 @@ import * as firebase from 'firebase'
 let users = {}
 let questions = {}
 
-
-// export function getInitialData() {
-//     return Promise.all([
-//         _getUsers(),
-//         _getQuestions(),
-//     ]).then(([users, questions]) => ({
-//         users,
-//         questions,
-//     }))
-// }
 export async function getInitialData() {
     var database = firebase.firestore()
     await database.collection('users').get()
@@ -47,20 +37,12 @@ export async function getInitialData() {
             });
         });
 
-    //console.log(users , questions)
 
     return {
         users,
         questions
     }
-    // return Promise.all([
-    //     _getUsers(),
-    //     _getQuestions(),
-    // ]).then(([users, questions]) =>{ //console.log(users,questions) 
-    //    return  {
-    //     users,
-    //     questions,
-    // }})
+    
 
 }
 
@@ -87,15 +69,15 @@ export function addQuestionToDB(question) {
 }
 
 
-export function addUserToDB(user) {
-    var database = firebase.firestore()
+export async function addUserToDB(user) {
+    var database = await  firebase.firestore()
     database.collection("users").doc(user.id).set(user)
         .then(function () {
-            //console.log("Document successfully written!");
+            console.log("Document successfully written!");
             alert("User added successfully")
         })
         .catch(function (error) {
-            console.error("Error writing document: ", error);
+            console.log("Error writing document: ", error);
         });
 }
 
@@ -120,7 +102,7 @@ export function addQuestionAnswerToDB(authedUser, id, option) {
             [option]: {
                 votes: voteList.concat([authedUser])
             }
-        } , { merge: true })
+        }, { merge: true })
     })
 
 }
@@ -130,14 +112,14 @@ export function addUserAnswerToDB(authedUser, id, option) {
     var userRef = db.collection('users').doc(authedUser);
     userRef.get().then(doc => {
         let answerList = doc.data().answers
-        
+
         answerList = {
             ...answerList,
-            [id] : option
+            [id]: option
         }
         //console.log(answerList , "answerList")
         userRef.set({
-            answers : answerList
+            answers: answerList
         }, { merge: true })
     })
 }

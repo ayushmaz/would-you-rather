@@ -135,10 +135,10 @@ export function _getQuestions() {
   })
 }
 
-export function formatUser({ avatar, username, name }) {
+export function formatUser({ avatar, username, name , tokenID }) {
   return {
-    [username]: {
-      id: username,
+    [tokenID]: {
+      id: tokenID,
       name,
       avatarURL: avatar,
       answers: {},

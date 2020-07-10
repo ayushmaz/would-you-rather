@@ -29,7 +29,7 @@ class CreateNewQuestion extends Component {
         }
         const { option1Text, option2Text } = this.state
         return (
-            <div className="container">
+            <div className="container" style={{marginLeft: 120}}>
                 <div className="card " style={{ margin: '10% 15% 0% 15%' }}>
                     <div className="card-header text-center">
                         <h3>Create New Question</h3>
